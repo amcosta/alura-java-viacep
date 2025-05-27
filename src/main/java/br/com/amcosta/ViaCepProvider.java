@@ -27,6 +27,9 @@ public class ViaCepProvider implements CepProvider {
 
         try {
             HttpResponse<String> response = this.client.send(request, BodyHandlers.ofString());
+            if (response.statusCode() != 200) {
+                throw new RuntimeException("Erro ao buscar o endereço: " + response.body());
+            }
             return Address.fromJson(response.body());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Erro ao fazer a requisição: " + e.getMessage(), e);

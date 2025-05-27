@@ -4,7 +4,7 @@ public class Cep {
     String cep;
 
     public Cep(String cep) {
-        cep.replaceAll("\\D", "");
+        cep = cep.replaceAll("\\D", "");
         if (cep.length() != 8) {
             throw new IllegalArgumentException("O CEP informando não é válido");
         }
